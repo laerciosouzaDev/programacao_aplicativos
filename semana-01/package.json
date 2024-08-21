@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx ./src/exercicio01.ts "
+    "dev": "tsx ./src/exercicio01.ts ",
+    "cadastro": "tsx ./src/exercicio02.ts ",
+    "respository": "tsx ./src/repository/celularRepository.ts "
   },
   "keywords": [],
   "author": "",
