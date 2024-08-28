@@ -1,14 +1,10 @@
 import Cachorro from "./Cachorro";
 import Dono from "./Dono";
 
-var d1 = new Dono("Laercio, 9999-8888, ");
+var d1 = new Dono("laercio", "4798834-9538");
 var c1 = new Cachorro("ZEUS","Labrador","Caramelo",d1);
 
 
-
-
-
-d1.nome = "Laercio";
 
 c1.exibirCachorro();
 c1.exibirDono();
