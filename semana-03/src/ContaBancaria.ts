@@ -25,25 +25,22 @@ export default class ContaBancaria{
         return this.numero
     }
 
-    public setSaldo(): number{
-        return this.saldo
+    public setNumero(numero:string): void{
+        this.numero = numero;
+    }
+
+    public setSaldo(valor: number): void{
+        this.saldo = valor;
     }
 
     public getSaldo(): number{
         return this.saldo
     }
 
-    public setNumero(numero:string): void{
-        this.numero = numero;
-    }
-
     //metodos ou (funçoes)
     mostrarDadosConta(){
         console.log(`Nome Titular: ${this.titular.getNome }`)
         console.log(`CPF: ${this.titular.getCpf }` )
-        console.log(`Data nascimento: ${this.titular.getDataNasc }`)
-        console.log(`numero telefone: ${this.titular.getTelefone }`)
-        console.log(`endereco: ${this.titular.getEndereco }`)
         console.log(`numero da conta: ${this.numero }`)
         console.log(`data da criacao: ${this.dataCriacao }`)
         console.log(`Saldo da conta: ${this.saldo }`)

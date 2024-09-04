@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx ./src/indexConta.ts "
+    "dev": "tsx ./src/Nubank.ts "
   },
   "keywords": [],
   "author": "",
