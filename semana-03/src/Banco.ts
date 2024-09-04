@@ -8,7 +8,14 @@ export default class Banco{
     private contas: ContaBancaria[] = [];
 
     public transferir(){
-        
+        // var i = this.contas.findIndex(conta.getNumero()=== numeroOrigem);
+        //var indexDestino;
+        // for(var i = 0;i < this.contas.length; i++){
+        //     if(numeroConta === this.contas[i].getNumero()){
+        //         indexDestino = i;
+        //     }
+        // }
+
         // Buscar a conta de oerigem da transferencia
         //pedir valor da transferencia
         // verificar se tem saldo
