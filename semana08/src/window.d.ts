@@ -5,6 +5,8 @@ declare global {
     interface Window {
         addPeloEnter: (event: KeyboardEvent) => void;
         addTarefa: () => void;
-        render: () => void;
+        trocaConcluir: (id: number) => void;
+        editarTarefa: (id: number) => void;
+        deletarTarefa: (id: number) => void;
     }
 }

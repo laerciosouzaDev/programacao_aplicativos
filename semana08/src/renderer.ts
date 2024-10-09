@@ -26,7 +26,9 @@
  * ```
  */
 
+
 import Tarefa from './Tarefa';
+import Swal from 'sweetalert2';
 import './index.css';
 
 var tarefas: Tarefa [] = [];
@@ -37,14 +39,17 @@ function addPeloEnter(evento: KeyboardEvent){
         addTarefa();
     }
   }
-  window.addPeloEnter = addPeloEnter
 
   function addTarefa(){
     const input = document.getElementById("tarefa-text") as HTMLInputElement;
     const tarefaTexto = input.value.trim();
 
     if(tarefaTexto === ''){
-        alert("VOCÊ TENTOU ADICIONAR UMA TAREFA SEM TEXTO");
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Não pode ser uma tarefa vazia!",
+        });
         return;
     }
 
@@ -62,7 +67,7 @@ function addPeloEnter(evento: KeyboardEvent){
 }
 
 function render(){
-    const listaTarefas = document.getElementById("lista-tarefa") as HTMLDListElement;
+    const listaTarefas = document.getElementById("lista-tarefa") as HTMLUListElement;
     listaTarefas.innerHTML = "";
 
     for (var i = 0; i < tarefas.length; i++) {
@@ -100,10 +105,71 @@ function render(){
 
         listaTarefas.appendChild(li);
     }
+
 }
+
+function trocaConcluir(id:number){
+    const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
+    const valorAtual = tarefas[index].getCompleted();
+
+    tarefas[index].setCompleted (!valorAtual);
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    render();
+
+    //ultilizando o if e else
+    // if(tarefas[index].getCompleted() === true){
+    //     tarefas[index].setCompleted(false);
+    // }else{
+    //     tarefas[index].setCompleted(true);
+    // }
+
+    // por tras dos panos usando do findIndex(tarefa => tarefa.getId() === id)
+    // var index2;
+    // for(var i = 0; i < tarefas.length; i++){
+    //     if(tarefas[i].getId() === id){
+    //         index2 = i;
+    //     }
+    // }
+
+    }
+
+    async function editarTarefa(id:number){
+        const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
+
+        const {value} = await Swal.fire({
+            title: "Editar tarefa!",
+            input: "text",
+            inputLabel: "Edit o texto da tarefa:",
+            inputValue: tarefas[index].getText(),
+            showCancelButton: true,
+          });
+          if(value !== undefined && value !== ''){
+            tarefas[index].setText(value);
+            localStorage.setItem('tarefas', JSON.stringify(tarefas));
+            render();
+          }
+
+
+          console.log(value);
+
+
+    }
+
+    function deletarTarefa(id:number){
+        const tarefasFiltradas = tarefas.filter(tarefa => tarefa.getId() !== id);
+        tarefas = tarefasFiltradas;
+        localStorage.setItem('tarefas', JSON.stringify(tarefas));
+        render();
+    }
+
+
+
 window.addPeloEnter = addPeloEnter;
 window.addTarefa = addTarefa;
-window.render = render;
+window.trocaConcluir = trocaConcluir;
+window.editarTarefa = editarTarefa;
+window.deletarTarefa = deletarTarefa;
+
     
 
   //document.getElementById("tarefa-text").addEventListener('onkeypress', addPeloEnter)
